@@ -1,5 +1,4 @@
 const User = require("../models/user")
-//const ExpressError = require("../utils/ExpressError");
 
 module.exports.createUser = async (req, res) => {
     console.log(req.body);
@@ -11,5 +10,5 @@ module.exports.createUser = async (req, res) => {
     }
 
 
-    res.status(201).json({ result: "Success", message: "Plan created successfully!" });
+    res.status(201).json({ result: "Success", message: "User created successfully!" });
 }

@@ -1,14 +1,16 @@
 const express = require('express');
-
+const ExpressError = require("../utils/ExpressError");
 const app = express();
 
 app.use(express.json());
 
 
 const userRoutes = require("./route/user");
+const cartRoutes = require("./route/cart");
 
 //Define the routes
 app.use('/', userRoutes);
+app.use('/cart', cartRoutes);
 
 //Dummy route
 app.get('/dummy', (req, res) => {
