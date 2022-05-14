@@ -13,3 +13,19 @@ module.exports.addToCart = async (req, res) => {
 
     res.status(201).json({ result: "Success", message: "Added to cart successfully!" });
 }
+
+module.exports.showCart = async (req, res) => {
+    const AllItem = await Cart.findAll({
+        where: {
+            userId: 1
+        }
+    });
+    const items = [];
+    for (let i = 0; i < AllItem.length; i++) {
+        //console.log(AllItem[i].dataValues.ingredientId);
+        const ingredient = await Ingredient.findByPk(AllItem[i].dataValues.ingredientId);
+        items.push(ingredient);
+    }
+    //console.log(items);
+    res.status(201).json(items);
+}

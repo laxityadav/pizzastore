@@ -1,5 +1,5 @@
 const express = require('express');
-const ExpressError = require("../utils/ExpressError");
+const ExpressError = require("./utils/ExpressError");
 const app = express();
 
 app.use(express.json());
