@@ -3,8 +3,13 @@ const Cart = require("../models/cart")
 const Ingredient = require("../models/ingredients")
 
 module.exports.saveOrder = async (req, res) => {
-    //  TODO: need to delete cart items also
     const cartItems = await Cart.findAll({
+        where: {
+            userId: 1
+        }
+    });
+    //delete cart items
+    await Cart.destroy({
         where: {
             userId: 1
         }
