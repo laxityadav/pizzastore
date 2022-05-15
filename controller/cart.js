@@ -5,7 +5,7 @@ module.exports.addToCart = async (req, res) => {
     const ingredient = new Ingredient(req.body);
     const newPizza = await ingredient.save();
     const cartItem = new Cart();         //TODO: has to be optimized
-    cartItem.userId = 1;
+    cartItem.userId = req.userId;
     cartItem.ingredientId = newPizza.id;
     await cartItem.save();
 
@@ -15,7 +15,7 @@ module.exports.addToCart = async (req, res) => {
 module.exports.showCart = async (req, res) => {
     const AllItem = await Cart.findAll({
         where: {
-            userId: 1
+            userId: req.userId
         }
     });
     const items = [];

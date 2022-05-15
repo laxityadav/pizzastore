@@ -1,6 +1,7 @@
 const express = require('express');
 const ExpressError = require("./utils/ExpressError");
 const app = express();
+const auth = require("./middleware/auth");
 
 app.use(express.json());
 
@@ -15,7 +16,7 @@ app.use('/cart', cartRoutes);
 app.use('/order', orderRoutes);
 
 //Dummy route
-app.get('/dummy', (req, res) => {
+app.get('/dummy', auth, (req, res) => {
     res.send("Server is up and running");
 });
 

@@ -5,13 +5,13 @@ const Ingredient = require("../models/ingredients")
 module.exports.saveOrder = async (req, res) => {
     const cartItems = await Cart.findAll({
         where: {
-            userId: 1
+            userId: req.userId
         }
     });
     //delete cart items
     await Cart.destroy({
         where: {
-            userId: 1
+            userId: req.userId
         }
     });
     const ingredients = [];
@@ -19,7 +19,7 @@ module.exports.saveOrder = async (req, res) => {
         ingredients.push(cartItems[i].dataValues.ingredientId);
     }
     const order = new Order();
-    order.userId = 1;
+    order.userId = req.userId;
     order.ingredientId = ingredients;
     await order.save();
     res.status(201).json({ result: "Success", message: "Order placed successfully!" });
@@ -28,7 +28,7 @@ module.exports.saveOrder = async (req, res) => {
 module.exports.allOrders = async (req, res) => {
     const orderItems = await Order.findAll({
         where: {
-            userId: 1
+            userId: req.userId
         }
     });
     const allItems = [];

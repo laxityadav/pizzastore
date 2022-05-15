@@ -13,9 +13,6 @@ const User = sequelize.define('user', {
     },
     phonenumber: {
         type: Sequelize.STRING,
-    },
-    token: {
-        type: Sequelize.STRING,
     }
 });
 
