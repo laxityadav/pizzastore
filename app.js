@@ -7,10 +7,12 @@ app.use(express.json());
 
 const userRoutes = require("./route/user");
 const cartRoutes = require("./route/cart");
+const orderRoutes = require("./route/order");
 
 //Define the routes
 app.use('/', userRoutes);
 app.use('/cart', cartRoutes);
+app.use('/order', orderRoutes);
 
 //Dummy route
 app.get('/dummy', (req, res) => {

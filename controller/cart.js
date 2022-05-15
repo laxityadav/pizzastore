@@ -6,7 +6,7 @@ module.exports.addToCart = async (req, res) => {
     const ingredient = new Ingredient(req.body);
     const newPizza = await ingredient.save();
     //console.log(newPizza);
-    const cartItem = new Cart();
+    const cartItem = new Cart();         //TODO: has to be optimized
     cartItem.userId = 1;
     cartItem.ingredientId = newPizza.id;
     await cartItem.save();
@@ -21,7 +21,7 @@ module.exports.showCart = async (req, res) => {
         }
     });
     const items = [];
-    for (let i = 0; i < AllItem.length; i++) {
+    for (let i = 0; i < AllItem.length; i++) {      //TODO: has to be optimized
         //console.log(AllItem[i].dataValues.ingredientId);
         const ingredient = await Ingredient.findByPk(AllItem[i].dataValues.ingredientId);
         items.push(ingredient);
