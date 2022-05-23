@@ -34,12 +34,12 @@ module.exports.allOrders = async (req, res) => {
     const allItems = [];
     for (let i = 0; i < orderItems.length; i++) {
         const order = [];
-        for(let j=0; j<orderItems[i].dataValues.ingredientId.length; j++) {
+        for (let j = 0; j < orderItems[i].dataValues.ingredientId.length; j++) {
             const ingredient = await Ingredient.findByPk(orderItems[i].dataValues.ingredientId[j]);
             order.push(ingredient);
         }
         allItems.push(order);
     }
-    
+
     res.status(201).json(allItems);
 }

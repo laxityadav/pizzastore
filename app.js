@@ -1,9 +1,22 @@
 const express = require('express');
 const ExpressError = require("./utils/ExpressError");
 const app = express();
-const auth = require("./middleware/auth");
+const cors = require('cors')
 
 app.use(express.json());
+
+app.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'localhost:3000');
+    res.header('Access-Control-Allow-Headers', 'Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT ,DELETE');
+    res.header('Access-Control-Allow-Credentials', true);
+    next();
+})
+
+
+const corsConfig = { origin: true, credentials: true };
+
+app.use(cors(corsConfig));
 
 
 const userRoutes = require("./route/user");
@@ -16,7 +29,8 @@ app.use('/cart', cartRoutes);
 app.use('/order', orderRoutes);
 
 //Dummy route
-app.get('/dummy', auth, (req, res) => {
+app.post('/dummy', (req, res) => {
+    console.log(req.body);
     res.send("Server is up and running");
 });
 

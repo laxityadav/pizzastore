@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const ExpressError = require("../utils/ExpressError");
 
 //Verify Token
 module.exports = async (req, res, next) => {
